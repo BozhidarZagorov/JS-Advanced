@@ -111,14 +111,69 @@
 // cookingByNumbers('9', 'dice', 'spice', 'chop', 'bake','fillet')
 
 
-function wordsUpper(str) {
-    let res = str.split(/[^A-Za-z0-9]+/gm)
-    for (let i = 0; i < res.length; i++) {
-        const element = res[i];
-        if (element.length<1) {
-            res.splice(i,1)
+// function wordsUpper(str) {
+//     let res = str.split(/[^A-Za-z0-9]+/gm)
+//     for (let i = 0; i < res.length; i++) {
+//         const element = res[i];
+//         if (element.length<1) {
+//             res.splice(i,1)
+//         }
+//     }
+//     console.log(res.join(', ').toUpperCase());
+// }
+// wordsUpper('Hi, how are you?')
+
+
+// function roadRadar(speed, area) {
+//     let speedLimits = {
+//         motorway: 130,
+//         interstate: 90,
+//         city: 50,
+//         residential: 20
+//     }
+
+//     const currentLimit = speedLimits[area];
+
+//     if (speed <= currentLimit) {
+//         console.log(`Driving ${speed} km/h in a ${currentLimit} zone`);
+//     }
+//     else {
+//         let status = '';
+//         const difference = speed - currentLimit;
+
+//         if (difference <= 20) {
+//             status = 'speeding';
+//         }
+//         else if (difference <= 40) {
+//             status = 'excessive speeding';
+//         }
+//         else {
+//             status = 'reckless driving';
+//         }
+
+//         console.log(`The speed is ${difference} km/h faster than the allowed speed of ${currentLimit} - ${status}`);
+//     }
+// }
+
+// roadRadar(40, 'city');
+
+
+function validCheck(x1, y1, x2, y2) {
+    function checker(x1, y1, x2, y2) {
+        let result = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+
+        if (result % 1 !== 0) {
+            return `{${x1}, ${y1}} to {${x2}, ${y2}} is invalid`;
+        }
+        else {
+            return `{${x1}, ${y1}} to {${x2}, ${y2}} is valid`;
         }
     }
-    console.log(res.join(', ').toUpperCase());
+
+    console.log(checker(x1, y1, 0, 0));
+    console.log(checker(x2, y2, 0, 0));
+    console.log(checker(x1, y1, x2, y2));
 }
-wordsUpper('Hi, how are you?')
+
+validCheck(3, 0, 0, 4);
+validCheck(2, 1, 1, 1)

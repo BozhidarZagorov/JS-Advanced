@@ -115,63 +115,118 @@
 // }
 // sortByTwoCriteria(['alpha','beta','gamma'])
 
-function ticTakToe(data) {
-    let board=[[false, false, false],
-                [false, false, false],
-                [false, false, false]]
+// function ticTakToe(data) {
+//     let board=[[false, false, false],
+//                 [false, false, false],
+//                 [false, false, false]]
 
-    let isfirstPlayerPlay = true
+//     let isfirstPlayerPlay = true
 
-    for (const el of data) {
-        let [x,y]=el.split(" ")
-        if (board[x][y]) {
-            console.log("This place is already taken. Please choose another!");
-            continue
-        }
-        let marker = isfirstPlayerPlay ? 'X' : "O"
-        board[x][y]=marker
+//     for (const el of data) {
+//         let [x,y]=el.split(" ")
+//         if (board[x][y]) {
+//             console.log("This place is already taken. Please choose another!");
+//             continue
+//         }
+//         let marker = isfirstPlayerPlay ? 'X' : "O"
+//         board[x][y]=marker
 
-        if (checkWin(board,marker)) {
-            console.log(`Player ${marker} wins!`);
-            return printBoard(board)
-        }
+//         if (checkWin(board,marker)) {
+//             console.log(`Player ${marker} wins!`);
+//             return printBoard(board)
+//         }
 
-        if (checkSpaces(board)) {
-            console.log("The game ended! Nobody wins :(");
-            return printBoard(board)
-        }
+//         if (checkSpaces(board)) {
+//             console.log("The game ended! Nobody wins :(");
+//             return printBoard(board)
+//         }
 
-        isfirstPlayerPlay=!isfirstPlayerPlay
-    }
+//         isfirstPlayerPlay=!isfirstPlayerPlay
+//     }
 
-    console.table(board)
-    function checkWin(dashboard,marker) {
-        if (dashboard[0][0]===marker && dashboard[1][1]===marker && dashboard[2][2]===marker) {
-            return true
-        }else if (dashboard[0][2]===marker && dashboard[1][1]===marker && dashboard[2][0]===marker) {
-            return true
-        }
-        for (let i = 0; i < dashboard.length; i++) {
-            if (dashboard[i][0]===marker && dashboard[i][1]===marker && dashboard[i][2]===marker) {
-                return true
-            }else if (dashboard[0][i]===marker && dashboard[1][i]===marker && dashboard[2][i]===marker) {
-                return true
-            }else return false
+//     console.table(board)
+//     function checkWin(dashboard,marker) {
+//         if (dashboard[0][0]===marker && dashboard[1][1]===marker && dashboard[2][2]===marker) {
+//             return true
+//         }else if (dashboard[0][2]===marker && dashboard[1][1]===marker && dashboard[2][0]===marker) {
+//             return true
+//         }
+//         for (let i = 0; i < dashboard.length; i++) {
+//             if (dashboard[i][0]===marker && dashboard[i][1]===marker && dashboard[i][2]===marker) {
+//                 return true
+//             }else if (dashboard[0][i]===marker && dashboard[1][i]===marker && dashboard[2][i]===marker) {
+//                 return true
+//             }else return false
             
-        }
-    }
+//         }
+//     }
 
-    function checkSpaces(dashboard) {
-       return !dashboard.flat().filter(x=>!x).length
-    }
+//     function checkSpaces(dashboard) {
+//        return !dashboard.flat().filter(x=>!x).length
+//     }
     
-    function printBoard(dashboard) {
-        dashboard.forEach(row =>{
-            console.log(row.join('\t'));
+//     function printBoard(dashboard) {
+//         dashboard.forEach(row =>{
+//             console.log(row.join('\t'));
             
-        })
+//         })
+//     }
+// }
+// ticTakToe(["0 1","0 0","0 2","2 0","1 0","1 1","1 2","2 2","2 1","0 0"]) //O
+// ticTakToe(["0 0","0 0","1 1","0 1","1 2","0 2","2 2","1 2","2 2","2 1"]) //X
+// ticTakToe(["0 1","0 0","0 2","2 0","1 0","1 2","1 1","2 1","2 2","0 0"]) //out of space
+
+
+
+// function rotateArr(arr, times) {
+//     for (let i = 1; i <= times; i++) {
+//         arr.unshift(arr.pop());
+//     }
+
+//     console.log(arr.join(' '));
+// }
+
+// rotateArr(['1', '2', '3', '4'], 2);
+
+
+
+
+function matrice(matrix) {
+    let sum = 0;
+    let oldSum = 0;
+    let isMagic=true
+
+    matrix.forEach((element) => {oldSum += element[0];})
+
+    for (let i = 0; i < matrix.length; i++) {
+        sum = 0;
+
+        for (let j = 0; j < matrix.length; j++) {
+            sum += matrix[j][i];
+        }
+
+        if (!(sum === oldSum)) {
+            isMagic=false
+            return isMagic
+        }
     }
+
+    let rowSum = 0;
+
+    for (const row of matrix) {
+        rowSum = 0;
+
+        for (const rowElement of row) {
+            rowSum += rowElement;
+        }
+
+        if (!(rowSum === oldSum)) {
+            isMagic=false
+            return isMagic
+        }
+    }
+
+    console.log(isMagic);
 }
-ticTakToe(["0 1","0 0","0 2","2 0","1 0","1 1","1 2","2 2","2 1","0 0"]) //O
-ticTakToe(["0 0","0 0","1 1","0 1","1 2","0 2","2 2","1 2","2 2","2 1"]) //X
-ticTakToe(["0 1","0 0","0 2","2 0","1 0","1 2","1 1","2 1","2 2","0 0"]) //out of space
+
+matrice([[4, 5, 6], [6, 5, 4], [5, 5, 5]]);

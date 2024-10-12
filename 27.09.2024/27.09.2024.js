@@ -109,7 +109,165 @@
 
 
 
+// function breakfastRobot() {
+//     let microElsAvailable = {
+//         'protein': 0,
+//         'carbohydrate': 0,
+//         'fat': 0,
+//         'flavour': 0
+//     }
+
+//     const request = (order) => {
+//         if (order === 'report') {
+//             let reportMsg = [];
+//             for (const microKey in microElsAvailable) {
+//                 reportMsg.push(`${microKey}=${microElsAvailable[microKey]}`);
+//             }
+
+//             return reportMsg.join(' ');
+//         }
+//         else if (order.includes("restock")) {
+//             const [_, microEl, qty] = order.split(' ');
+
+//             microElsAvailable[microEl] += Number(qty);
+
+//             return "Success";
+//         }
+//         else if (order.includes("prepare")) {
+//             const [_, recipe, quantity] = order.split(' ');
+
+//             let shortProduct = '';
+
+//             for (let i = 1; i <= quantity; i++) {
+//                 switch (recipe) {
+//                     case 'apple':
+//                         if (microElsAvailable.carbohydrate - 1 < 0) {
+//                             shortProduct = "carbohydrate";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+//                         if (microElsAvailable.flavour - 2 < 0) {
+//                             shortProduct = "flavour";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+
+
+//                         microElsAvailable.carbohydrate -= 1;
+//                         microElsAvailable.flavour -= 2;
+
+//                         break;
+
+//                     case 'lemonade':
+//                         if (microElsAvailable.carbohydrate - 10 < 0) {
+//                             shortProduct = "carbohydrate";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+//                         if (microElsAvailable.flavour - 20 < 0) {
+//                             shortProduct = "flavour";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+
+//                         microElsAvailable.carbohydrate -= 10;
+//                         microElsAvailable.flavour -= 20;
+
+//                         break;
+
+//                     case 'burger':
+//                         if (microElsAvailable.carbohydrate - 5 < 0) {
+//                             shortProduct = "carbohydrate";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+//                         if (microElsAvailable.fat - 7 < 0) {
+//                             shortProduct = "fat";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+//                         if (microElsAvailable.flavour - 3 < 0) {
+//                             shortProduct = "flavour";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+
+
+//                         microElsAvailable.carbohydrate -= 5;
+//                         microElsAvailable.fat -= 7;
+//                         microElsAvailable.flavour -= 3;
+
+//                         break;
+
+//                     case 'eggs':
+//                         if (microElsAvailable.protein - 5 < 0) {
+//                             shortProduct = "protein";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+//                         if (microElsAvailable.fat - 1 < 0) {
+//                             shortProduct = "fat";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+//                         if (microElsAvailable.flavour - 1 < 0) {
+//                             shortProduct = "flavour";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+
+
+//                         microElsAvailable.protein -= 5;
+//                         microElsAvailable.fat -= 1;
+//                         microElsAvailable.flavour -= 1;
+
+//                         break;
+
+//                     case 'turkey':
+//                         if (microElsAvailable.protein - 10 < 0) {
+//                             shortProduct = "protein";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+//                         if (microElsAvailable.carbohydrate - 10 < 0) {
+//                             shortProduct = "carbohydrate";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+//                         if (microElsAvailable.fat - 10 < 0) {
+//                             shortProduct = "fat";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+//                         if (microElsAvailable.flavour - 10 < 0) {
+//                             shortProduct = "flavour";
+//                             return `Error: not enough ${shortProduct} in stock`;
+//                         }
+
+
+//                         microElsAvailable.protein -= 10;
+//                         microElsAvailable.carbohydrate -= 10;
+//                         microElsAvailable.fat -= 10;
+//                         microElsAvailable.flavour -= 10;
+
+//                         break;
+//                 }
+//             }
+
+//             return "Success";
+//         }
+//     }
+
+//     return request;
+// }
+
+// let manager = breakfastRobot();
+// console.log(manager("restock flavour 50")); // Success
+// console.log(manager("prepare lemonade 4")); // Error: not enough carbohydrate in stock
 
 
 
 
+
+
+function sum(a) {
+    let sum = a;
+    
+    function addToSum(b) {
+        sum += b;
+        return addToSum;
+    }
+    addToSum.valueOf = function() {
+        return sum;
+    };
+    return addToSum;
+}
+
+console.log(sum(1)(6)(-3).valueOf());
